@@ -20,7 +20,7 @@ class BoardBase(BaseModel):
     title: str
     content: str
     filename: str
-    file_data: LargeBinary
+    file_data: bytes
 
 class BoardCreate(BoardBase):
     pass

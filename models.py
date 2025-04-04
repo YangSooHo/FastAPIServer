@@ -29,7 +29,7 @@ class BoardFiles(Base):
     original_filename = Column(String)
     data = Column(LargeBinary)
 
-    file_id = Column(Integer, ForeignKey("boards.id"))
+    board_id = Column(Integer, ForeignKey("boards.id"))
 
     board = relationship("Board", backref="boardFiles")
 

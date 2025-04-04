@@ -3,7 +3,7 @@ import asyncio
 import urllib.parse
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-
+from config import settings
 
 # SQLite DB
 # DATABASE_URL = "sqlite:///./test.db"
@@ -21,15 +21,11 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 #     finally:
 #         db.close()
 
-username = urllib.parse.quote_plus("postgres")
-password = urllib.parse.quote_plus("test123!@#")
-
-DATABASE_URL = f"postgresql+asyncpg://{username}:{password}@localhost:5432/fast_api"
 
 # 비동기 엔진 생성
-engine = create_async_engine(DATABASE_URL, echo=True)
+engine = create_async_engine(settings.DATABASE_URL, echo=True)
 
-# 세션 생성
+# 세션 팩토리 생성
 AsyncSessionLocal = sessionmaker(
     bind=engine, class_=AsyncSession, expire_on_commit=False
 )
