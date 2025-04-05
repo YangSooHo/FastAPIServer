@@ -7,6 +7,7 @@ from schemas.mixin import AuditSchemaMixin
 class BoardFilesBase(AuditSchemaMixin):
     filename: str = Field(..., min_length=1, max_length=256)
     original_filename: str = Field(..., min_length=1, max_length=256)
+    deleted: bool = False
 
 class BoardFilesCreate(BoardFilesBase):
     pass
@@ -25,6 +26,7 @@ class BoardFilesResponse(BoardFilesBase):
 class BoardBase(AuditSchemaMixin):
     title: str = Field(..., min_length=1, max_length=200)
     content: str = Field(..., min_length=1, max_length=5000)
+    deleted: bool = False
 
 class BoardCreate(BoardBase):
     files: List[BoardFilesCreate] = Field(default_factory=list)

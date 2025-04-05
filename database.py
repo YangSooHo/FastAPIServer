@@ -55,6 +55,7 @@ async def create_tables():
             await conn.run_sync(Base.metadata.create_all)
     except Exception as e:
         print(f'Create Table 시도 중 오류 발생 : {e}')
+        raise e
 
 
 if __name__ == "__main__":
